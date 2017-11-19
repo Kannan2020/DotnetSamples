@@ -1,9 +1,7 @@
-﻿using System;
+﻿using DI_BL_Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DI_BL_Model;
 
 namespace DI_DAL_Repository
 {
@@ -14,11 +12,10 @@ namespace DI_DAL_Repository
             using (Context context = new Context())
             {
                 var employee = context.Employee.Find(model);
-                context.Entry(employee).State = System.Data.Entity.EntityState.Detached;
+                context.Entry(employee).State = System.Data.Entity.EntityState.Deleted;
                 context.SaveChanges();
             }
         }
-
         public IEnumerable<Employee> GetAllEmployee()
         {
             using (Context context = new Context())
@@ -27,7 +24,6 @@ namespace DI_DAL_Repository
                 return employee;
             }
         }
-
         public Employee GetEmployee(Guid EmployeeId)
         {
             using (Context context = new Context())
